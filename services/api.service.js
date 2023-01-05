@@ -6,7 +6,7 @@ import axios from "axios";
 const API_URL = "https://api.openweathermap.org/data/2.5/weather";
 
 export const fetchWeather = async (city) => {
-  const token = await getItem(TOKEN);
+  const token = process.env.TOKEN ?? (await getItem(TOKEN));
 
   if (!token) throw new Error("Token is undefined");
 

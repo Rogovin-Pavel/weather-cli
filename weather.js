@@ -3,7 +3,7 @@ import { getArguments } from "./helpers/args.js";
 import { promiseHandler } from "./helpers/handlers.js";
 import { TOKEN, CITY } from "./helpers/constants.js";
 
-import { help } from "./services/log.service.js";
+import { help, logWeather } from "./services/log.service.js";
 import { getItem, storeItem } from "./services/storage.service.js";
 import { fetchWeather } from "./services/api.service.js";
 
@@ -38,7 +38,7 @@ const init = async () => {
     city
   );
 
-  console.log(data);
+  logWeather(data);
 };
 
 init();
