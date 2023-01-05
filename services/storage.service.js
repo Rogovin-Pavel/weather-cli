@@ -14,11 +14,14 @@ const exists = async (path) => {
 const filePath = join(homedir(), "/weather-data.json");
 
 const storeItem = async (key, value) => {
-  if (value === true) throw new Error("Fill the data");
+  if (value === true || !value) throw new Error("Fill the data");
   let data = {};
   if (await exists(filePath)) {
     const file = await promises.readFile(filePath);
-    data = JSON.parse(file);
+    data = {
+      ...data,
+      ...JSON.parse(file),
+    };
   }
   data[key] = value;
   await promises.writeFile(filePath, JSON.stringify(data));

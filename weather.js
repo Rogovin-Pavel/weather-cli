@@ -11,31 +11,36 @@ const init = async () => {
   const args = getArguments(process.argv);
 
   if (args.h) help();
-  if (args.s)
-    promiseHandler(
+
+  const city = await getItem(CITY);
+  if (!city) {
+    await promiseHandler(
       storeItem,
       "city is saved",
       "city isn't saved",
       CITY,
       args.s
     );
+  }
 
-  if (args.t)
-    promiseHandler(
+  const token = await getItem(TOKEN);
+  if (!token) {
+    await promiseHandler(
       storeItem,
       "token is saved",
       "token isn't saved",
       TOKEN,
       args.t
     );
+  }
 
   // We should show the weather
-  const city = args.s || (await getItem(CITY));
   const data = await promiseHandler(
     fetchWeather,
     "weather is fetched",
     "weather isn't fetched",
-    city
+    city ?? args.s,
+    token ?? args.t
   );
 
   logWeather(data);
