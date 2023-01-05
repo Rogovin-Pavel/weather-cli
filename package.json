@@ -9,12 +9,16 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node weather.js"
+    "start": "node weather.js",
+    "prettier": "npx prettier --write ."
   },
   "author": "Rogovin Pavel",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.2.2",
     "chalk": "^5.2.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.1"
   }
 }
