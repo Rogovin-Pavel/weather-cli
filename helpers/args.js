@@ -1,4 +1,4 @@
-const isDashed = (string) => string?.charAt(0) === '-';
+const isDashed = (string) => string?.charAt(0) === "-";
 
 const getArguments = (argv) => {
   const result = {};
