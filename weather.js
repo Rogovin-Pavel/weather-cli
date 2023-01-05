@@ -13,7 +13,7 @@ const init = async () => {
   if (args.h) help();
 
   const city = await getItem(CITY);
-  if (!city) {
+  if (args.s && args.s !== city) {
     await promiseHandler(
       storeItem,
       "city is saved",
@@ -24,7 +24,7 @@ const init = async () => {
   }
 
   const token = await getItem(TOKEN);
-  if (!token) {
+  if (args.t && args.t !== token) {
     await promiseHandler(
       storeItem,
       "token is saved",
@@ -39,8 +39,8 @@ const init = async () => {
     fetchWeather,
     "weather is fetched",
     "weather isn't fetched",
-    city ?? args.s,
-    token ?? args.t
+    args.s ?? city,
+    args.t ?? token
   );
 
   logWeather(data);
